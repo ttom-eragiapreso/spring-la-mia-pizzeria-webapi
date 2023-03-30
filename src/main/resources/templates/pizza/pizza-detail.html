@@ -5,7 +5,7 @@
     <title>Pizza details - [[${onePizza.id}]]</title>
 </head>
 <body>
-<th:block th:replace="~{fragments/fragments :: navbar}"></th:block>
+<th:block th:replace="~{fragments/fragments :: navbar('', false)}"></th:block>
 <div th:object="${onePizza}">
     <h1 th:text="*{description}"></h1>
     <h1 th:text="*{id}"></h1>

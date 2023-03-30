@@ -20,11 +20,17 @@ public class PizzaController {
     private PizzaRepository pizzaRepository;
 
     @GetMapping
-    public String index(Model model) {
+    public String index(Model model, @RequestParam(name = "q") Optional<String> keyword) {
 
-        List<Pizza> allPizzas = pizzaRepository.findAll();
+        List<Pizza> pizzas;
+        if (keyword.isEmpty()) {
+            pizzas = pizzaRepository.findAll();
+        } else {
+            pizzas = pizzaRepository.findByDescriptionContainingIgnoreCase(keyword.get());
+        }
 
-        model.addAttribute("pizzas", allPizzas);
+        model.addAttribute("pizzas", pizzas);
+        model.addAttribute("keyword", keyword.orElse(""));
         return "pizza/index";
     }
 

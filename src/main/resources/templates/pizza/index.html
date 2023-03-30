@@ -5,7 +5,7 @@
     <title>La mia pizzeria</title>
 </head>
 <body>
-<th:block th:replace="~{fragments/fragments :: navbar}"></th:block>
+<th:block th:replace="~{fragments/fragments :: navbar(${keyword}, true)}"></th:block>
 <h1 class="mt-5 text-center">Pizzeria</h1>
 
 <div class="w-50 mx-auto">
