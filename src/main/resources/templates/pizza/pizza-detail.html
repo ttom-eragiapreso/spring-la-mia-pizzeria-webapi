@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/fragments :: head}"></th:block>
+    <title>Pizza details - [[${onePizza.id}]]</title>
+</head>
+<body>
+<th:block th:replace="~{fragments/fragments :: navbar}"></th:block>
+<div th:object="${onePizza}">
+    <h1 th:text="*{description}"></h1>
+    <h1 th:text="*{id}"></h1>
+</div>
+</body>
+</html>
