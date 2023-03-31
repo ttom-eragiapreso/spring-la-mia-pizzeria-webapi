@@ -7,6 +7,7 @@
 <body>
 <th:block th:replace="~{fragments/fragments :: navbar(${keyword}, true)}"></th:block>
 <h1 class="mt-5 text-center">Pizzeria</h1>
+<a th:href="@{/pizza/create}" class="btn btn-primary text-center">Aggiungi una nuova pizza</a>
 
 <div class="w-50 mx-auto">
     <table class="table" th:if="${pizzas.size() > 0}">

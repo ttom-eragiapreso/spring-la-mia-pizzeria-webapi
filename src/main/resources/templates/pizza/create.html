@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/fragments :: head}"></th:block>
+    <title>Aggiungi una nuova pizza</title>
+</head>
+<body>
+<th:block th:replace="~{fragments/fragments :: navbar(${keyword}, false)}"></th:block>
+<h1 class="mt-5 text-center">Pizzeria</h1>
+
+<form th:action="@{/pizza/create}" class="w-50 mx-auto" method="post" th:object="${pizza}">
+    <ul th:if="${#fields.hasErrors()}">
+        <li th:each="error : ${#fields.allErrors()}" th:text="${error}"></li>
+    </ul>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Pizza price*</label>
+        <input type="number" step="0.01" class="form-control" id="exampleFormControlInput1"
+               th:field="*{price}"
+               th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('price')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Pizza description*</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                  th:field="*{description}" th:errorClass="is-invalid"></textarea>
+        <div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Vai</button>
+    <a th:href="@{/}" class="btn btn-info">Cancel</a>
+</form>
+
+</body>
+</html>

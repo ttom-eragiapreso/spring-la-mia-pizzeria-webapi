@@ -1,6 +1,8 @@
 package org.learning.lamiapizzeria.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
@@ -10,8 +12,10 @@ public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotEmpty
     private String description;
     @Column(nullable = false)
+    @NotNull
     private BigDecimal price;
 
     public int getId() {
