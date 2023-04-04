@@ -40,4 +40,17 @@ public class PizzaService {
         pizzaToPersist.setPrice(formPizza.getPrice());
         return pizzaRepository.save(pizzaToPersist);
     }
+
+    public Pizza updatePizza(Pizza formPizza, Integer id) {
+        Pizza pizzaToUpdate = getPizzaById(id);
+        pizzaToUpdate.setPrice(formPizza.getPrice());
+        pizzaToUpdate.setDescription(formPizza.getDescription());
+
+        return pizzaRepository.save(pizzaToUpdate);
+    }
+
+    public void deletePizza(Integer id) {
+        Pizza pizzaToDelete = getPizzaById(id);
+        pizzaRepository.delete(pizzaToDelete);
+    }
 }

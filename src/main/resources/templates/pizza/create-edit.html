@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="edit = ${pizza.id != null}">
 <head>
     <th:block th:replace="~{fragments/fragments :: head}"></th:block>
-    <title>Aggiungi una nuova pizza</title>
+    <title th:text="${edit} ? 'Modifica la tua pizza' : 'Crea la tua pizza'"></title>
 </head>
 <body>
 <th:block th:replace="~{fragments/fragments :: navbar(${keyword}, false)}"></th:block>
 <h1 class="mt-5 text-center">Pizzeria</h1>
 
-<form th:action="@{/pizza/create}" class="w-50 mx-auto" method="post" th:object="${pizza}">
+<form
+        th:with="formAction = ${edit ? '/pizza/edit/' + pizza.id : '/pizza/create'}"
+        th:action="@{${formAction}}"
+        class="w-50 mx-auto" method="post" th:object="${pizza}">
     <ul th:if="${#fields.hasErrors()}">
         <li th:each="error : ${#fields.allErrors()}" th:text="${error}"></li>
     </ul>

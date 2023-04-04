@@ -7,6 +7,7 @@
 <body>
 <th:block th:replace="~{fragments/fragments :: navbar(${keyword}, true)}"></th:block>
 <h1 class="mt-5 text-center">Pizzeria</h1>
+<th:block th:if="${message}" th:text="${message}"></th:block>
 <a th:href="@{/pizza/create}" class="btn btn-primary text-center">Aggiungi una nuova pizza</a>
 
 <div class="w-50 mx-auto">
@@ -27,6 +28,12 @@
             <td>
                 <a th:href="@{|/pizza/${pizza.id}|}">
                     <i class="fa-solid fa-pizza-slice"></i>
+                </a>
+                <a th:href="@{|/pizza/edit/${pizza.id}|}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+                <a th:href="@{|/pizza/delete/${pizza.id}|}">
+                    <i class="fa-solid fa-trash"></i>
                 </a>
             </td>
         </tr>
