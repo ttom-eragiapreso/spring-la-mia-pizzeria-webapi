@@ -28,6 +28,7 @@
     <th:block th:if="${onePizza.specialOffers.size() == 0}">
         <div class="text-center">
             <h3>Spiacenti non c'è nessuna offerta speciale per questa pizza</h3>
+            <h2>Aggiungine una tu <a th:href="@{/special-offer/create(pizzaId = ${onePizza.id})}">qui</a></h2>
         </div>
     </th:block>
 </div>

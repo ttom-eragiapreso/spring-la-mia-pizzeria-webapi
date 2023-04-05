@@ -16,6 +16,22 @@ public class SpecialOffer {
     @ManyToOne
     private Pizza pizza;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Pizza getPizza() {
+        return pizza;
+    }
+
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
+    }
+
     public String getTitle() {
         return title;
     }
