@@ -10,6 +10,7 @@
       th:object="${specialOffer}"
       class="w-50 mx-auto"
 >
+    <input type="hidden" th:field="*{pizza}">
     <div class="mb-3">
         <label for="startDate" class="form-label">Start Date</label>
         <input type="date" class="form-control" id="startDate"

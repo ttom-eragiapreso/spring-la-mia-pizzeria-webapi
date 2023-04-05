@@ -1,16 +1,16 @@
 package org.learning.lamiapizzeria.controller;
 
+import jakarta.validation.Valid;
 import org.learning.lamiapizzeria.PizzaNotFoundException;
 import org.learning.lamiapizzeria.model.Pizza;
 import org.learning.lamiapizzeria.model.SpecialOffer;
 import org.learning.lamiapizzeria.service.PizzaService;
+import org.learning.lamiapizzeria.service.SpecialOfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -20,6 +20,8 @@ import java.util.Optional;
 public class SpecialOfferController {
     @Autowired
     private PizzaService pizzaService;
+    @Autowired
+    private SpecialOfferService specialOfferService;
 
     @GetMapping("/create")
     public String create(@RequestParam(name = "pizzaId") Integer id, Model model) {
@@ -40,7 +42,10 @@ public class SpecialOfferController {
     }
 
     @PostMapping("/create")
-    public String store() {
-        return "pizza/pizza-detail/" + 1;
+    public String store(@Valid @ModelAttribute SpecialOffer formSpecialOffer, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) return "SpecialOffer/create";
+        SpecialOffer specialOfferNuova = specialOfferService.store(formSpecialOffer);
+        return "redirect:/pizza/" + specialOfferNuova.getPizza().getId();
     }
 }

@@ -1,5 +1,6 @@
 package org.learning.lamiapizzeria.service;
 
+import org.learning.lamiapizzeria.model.SpecialOffer;
 import org.learning.lamiapizzeria.repository.SpecialOfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,4 +9,8 @@ import org.springframework.stereotype.Service;
 public class SpecialOfferService {
     @Autowired
     private SpecialOfferRepository specialOfferRepository;
+
+    public SpecialOffer store(SpecialOffer formSpecialOffer) {
+        return specialOfferRepository.save(formSpecialOffer);
+    }
 }
