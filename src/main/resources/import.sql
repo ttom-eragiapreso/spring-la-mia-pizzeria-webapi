@@ -5,3 +5,8 @@ INSERT INTO db_pizzeria.pizzas (description, price) VALUES('Pizza Diavola', 6.99
 INSERT INTO db_pizzeria.pizzas (description, price) VALUES('Pizza Boscaiola', 10.99);
 INSERT INTO db_pizzeria.pizzas (description, price) VALUES('Pizza Quattro Formaggi', 11.99);
 INSERT INTO db_pizzeria.pizzas (description, price) VALUES('Pizza Awaiana', 135.99);
+INSERT INTO db_pizzeria.special_offers (end_date, start_date, title, pizza_id) VALUES('2023-01-01','2023-02-01','All you can eat pizza', 2);
+INSERT INTO db_pizzeria.special_offers (end_date, start_date, title, pizza_id) VALUES('2023-04-01','2023-08-01','Special offer number 2', 2);
+INSERT INTO db_pizzeria.special_offers (end_date, start_date, title, pizza_id) VALUES('2023-03-01','2023-05-01','Spacial offer number 3', 3);
+INSERT INTO db_pizzeria.special_offers (end_date, start_date, title, pizza_id) VALUES('2023-01-01','2023-02-01','Special offer number 4', 4);
+INSERT INTO db_pizzeria.special_offers (end_date, start_date, title, pizza_id) VALUES('2023-01-01','2023-02-01','cosa', 6);

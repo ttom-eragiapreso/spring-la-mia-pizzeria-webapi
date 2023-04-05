@@ -9,6 +9,27 @@
 <div th:object="${onePizza}">
     <h1 th:text="*{description}"></h1>
     <h1 th:text="*{id}"></h1>
+    <table class="table w-50 mx-auto" th:if="${onePizza.specialOffers.size() != 0}">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Start date</th>
+            <th>End date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="so : *{specialOffers}">
+            <td th:text="${so.title}"></td>
+            <td th:text="${so.startDate}"></td>
+            <td th:text="${so.endDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <th:block th:if="${onePizza.specialOffers.size() == 0}">
+        <div class="text-center">
+            <h3>Spiacenti non c'è nessuna offerta speciale per questa pizza</h3>
+        </div>
+    </th:block>
 </div>
 </body>
 </html>
