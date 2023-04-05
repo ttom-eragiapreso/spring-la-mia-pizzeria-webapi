@@ -3,7 +3,6 @@ package org.learning.lamiapizzeria.controller;
 import jakarta.validation.Valid;
 import org.learning.lamiapizzeria.PizzaNotFoundException;
 import org.learning.lamiapizzeria.model.Pizza;
-import org.learning.lamiapizzeria.repository.PizzaRepository;
 import org.learning.lamiapizzeria.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
