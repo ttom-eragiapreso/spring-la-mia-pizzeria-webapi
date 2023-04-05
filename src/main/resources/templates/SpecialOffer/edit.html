@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/fragments :: head}"></th:block>
+    <title>Modifica l'offerta speciale</title>
+</head>
+<body>
+<form th:action="@{|/special-offer/edit/*{id}|}"
+      method="post"
+      th:object="${specialOffer}"
+      class="w-50 mx-auto"
+>
+    <input type="hidden" th:field="*{pizza}">
+    <div class="mb-3">
+        <label for="startDate" class="form-label">Start Date</label>
+        <input type="date" class="form-control" id="startDate"
+               th:field="*{startDate}"
+               th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('startDate')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err : ${#fields.errors('startDate')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="endDate" class="form-label">End Date</label>
+        <input type="date" class="form-control" id="endDate"
+               th:field="*{endDate}"
+               th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('endDate')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err : ${#fields.errors('endDate')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title"
+               th:field="*{title}"
+               th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
+            <ul>
+                <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Vai</button>
+    <a th:href="@{/}" class="btn btn-warning">Cancella</a>
+</form>
+</body>
+</html>

@@ -13,4 +13,8 @@ public class SpecialOfferService {
     public SpecialOffer store(SpecialOffer formSpecialOffer) {
         return specialOfferRepository.save(formSpecialOffer);
     }
+
+    public SpecialOffer getById(Integer id) {
+        return specialOfferRepository.findById(id).orElseThrow();
+    }
 }

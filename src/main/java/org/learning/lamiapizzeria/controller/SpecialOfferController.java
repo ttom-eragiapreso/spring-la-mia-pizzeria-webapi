@@ -48,4 +48,19 @@ public class SpecialOfferController {
         SpecialOffer specialOfferNuova = specialOfferService.store(formSpecialOffer);
         return "redirect:/pizza/" + specialOfferNuova.getPizza().getId();
     }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        SpecialOffer specialOfferToEdit = specialOfferService.getById(id);
+        model.addAttribute("specialOffer", specialOfferToEdit);
+        return "SpecialOffer/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String update(@Valid @ModelAttribute SpecialOffer formSpecialOffer, BindingResult bindingResult,
+                         @PathVariable Integer id) {
+        if (bindingResult.hasErrors()) return "SpecialOffer/edit";
+        SpecialOffer specialOfferNuova = specialOfferService.store(formSpecialOffer);
+        return "redirect:/pizza/" + specialOfferNuova.getPizza().getId();
+    }
 }
