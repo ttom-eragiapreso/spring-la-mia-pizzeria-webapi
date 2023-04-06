@@ -7,8 +7,41 @@
 <body>
 <th:block th:replace="~{fragments/fragments :: navbar('', false)}"></th:block>
 
-<ul>
-    <li th:each="ingredient : ${ingredients}" th:text="${ingredient.name}"></li>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col" th:each="ingredient : ${ingredients}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${ingredient.name}">Card title</h5>
+                    <a th:href="@{|/ingredients/edit/${ingredient.id}|}" class="card-link">Modifica</a>
+                    <a th:href="@{|/ingredients/delete/${ingredient.id}|}" class="card-link">Cancella</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5"
+     th:with="action=${ingredient.id == null ? '/ingredients' : '/ingredients/edit/' + ingredient.id }">
+    <h2 th:text="${ingredient.id == null} ? 'Crea un nuovo ingrediente' : 'Modifica questo ingrediente'"></h2>
+    <form th:action="${action}" method="post" th:object="${ingredient}">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Ingredient name*</label>
+            <input type="text" step="0.01" class="form-control" id="exampleFormControlInput1"
+                   th:field="*{name}"
+                   th:errorClass="is-invalid">
+            <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+                <ul>
+                    <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success"
+                th:text="${ingredient.id == null} ? 'Salva' : 'Modifica'"></button>
+        <a th:href="@{/ingredients}" class="btn btn-warning">Cancella</a>
+    </form>
+</div>
+
+
 </body>
 </html>

@@ -1,7 +1,11 @@
 package org.learning.lamiapizzeria.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 import java.util.Set;
@@ -12,10 +16,11 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
-    @NotNull
+    @NotEmpty
     private String name;
 
     @ManyToMany(mappedBy = "ingredients")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Pizza> pizzas;
 
 
