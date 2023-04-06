@@ -3,6 +3,7 @@ package org.learning.lamiapizzeria.controller;
 import jakarta.validation.Valid;
 import org.learning.lamiapizzeria.PizzaNotFoundException;
 import org.learning.lamiapizzeria.model.Pizza;
+import org.learning.lamiapizzeria.service.IngredientService;
 import org.learning.lamiapizzeria.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ import java.util.Optional;
 public class PizzaController {
     @Autowired
     private PizzaService pizzaService;
+
+    @Autowired
+    private IngredientService ingredientService;
 
     @GetMapping
     public String index(Model model, @RequestParam(name = "q") Optional<String> keyword) {
@@ -73,6 +77,7 @@ public class PizzaController {
 
         try {
             model.addAttribute("pizza", pizzaService.getPizzaById(id));
+            model.addAttribute("ingredients", ingredientService.getAll());
             return "pizza/create-edit";
         } catch (PizzaNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza con id " + id + " non trovata.", e);

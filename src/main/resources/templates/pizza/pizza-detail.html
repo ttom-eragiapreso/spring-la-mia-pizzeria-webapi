@@ -23,12 +23,24 @@
             <td th:text="${so.title}"></td>
             <td th:text="${so.startDate}"></td>
             <td th:text="${so.endDate}"></td>
-            <td><a
-                    th:href="@{|/special-offer/edit/${so.id}|}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <td>
+                <a th:href="@{|/special-offer/edit/${so.id}|}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
             </td>
         </tr>
         </tbody>
     </table>
+    <ul th:if="${onePizza.ingredients.size() != 0}">
+        <li th:each="ingredient : ${onePizza.ingredients}" th:text="${ingredient.name}"></li>
+    </ul>
+    <th:block th:if="${onePizza.ingredients.size() == 0}">
+        <div class="text-center">
+            <h3>Spiacenti non c'è nessun ingrediente per questa pizza</h3>
+            <h2>Aggiungine uno tu <a th:href="@{/ingredients/create(pizzaId = ${onePizza.id})}">qui</a></h2>
+        </div>
+    </th:block>
+
     <th:block th:if="${onePizza.specialOffers.size() == 0}">
         <div class="text-center">
             <h3>Spiacenti non c'è nessuna offerta speciale per questa pizza</h3>

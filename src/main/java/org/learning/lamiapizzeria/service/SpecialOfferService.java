@@ -15,6 +15,6 @@ public class SpecialOfferService {
     }
 
     public SpecialOffer getById(Integer id) {
-        return specialOfferRepository.findById(id).orElseThrow();
+        return specialOfferRepository.findById(id).orElseThrow(() -> new RuntimeException("Non trovato"));
     }
 }

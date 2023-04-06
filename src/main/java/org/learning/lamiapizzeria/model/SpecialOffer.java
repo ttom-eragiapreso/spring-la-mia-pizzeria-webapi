@@ -1,6 +1,8 @@
 package org.learning.lamiapizzeria.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -10,6 +12,8 @@ public class SpecialOffer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty
+    @NotNull
     private String title;
     private LocalDate startDate;
     private LocalDate endDate;

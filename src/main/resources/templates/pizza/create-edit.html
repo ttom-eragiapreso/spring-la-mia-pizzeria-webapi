@@ -4,7 +4,7 @@
     <th:block th:replace="~{fragments/fragments :: head}"></th:block>
     <title th:text="${edit} ? 'Modifica la tua pizza' : 'Crea la tua pizza'"></title>
 </head>
-<body>
+<body th:object="${ingredients}">
 <th:block th:replace="~{fragments/fragments :: navbar(${keyword}, false)}"></th:block>
 <h1 class="mt-5 text-center">Pizzeria</h1>
 
@@ -35,6 +35,12 @@
                 <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
             </ul>
         </div>
+    </div>
+    <div class="form-check" th:each="ingredient : ${ingredients}">
+        <input class="form-check-input" type="checkbox" th:value="${ingredient.id}"
+               th:id="|ingredient_${ingredient.id}|">
+        <label class="form-check-label" th:for="|ingredient_${ingredient.id}|"
+               th:text="${ingredient.name}"></label>
     </div>
     <button type="submit" class="btn btn-primary">Vai</button>
     <a th:href="@{/}" class="btn btn-info">Cancel</a>
