@@ -17,4 +17,8 @@ public class IngredientService {
     public List<Ingredient> getAll() {
         return ingredientRepository.findAll(Sort.by("name"));
     }
+
+/*    public List<Ingredient> store(List<Ingredient> ingredients){
+
+    }*/
 }

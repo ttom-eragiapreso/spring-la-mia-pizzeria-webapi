@@ -3,6 +3,7 @@ package org.learning.lamiapizzeria.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,7 +16,7 @@ public class Ingredient {
     private String name;
 
     @ManyToMany(mappedBy = "ingredients")
-    private Set<Pizza> pizzas;
+    private List<Pizza> pizzas;
 
 
     public Integer getId() {
@@ -34,11 +35,11 @@ public class Ingredient {
         this.name = name;
     }
 
-    public Set<Pizza> getPizzas() {
+    public List<Pizza> getPizzas() {
         return pizzas;
     }
 
-    public void setPizzas(Set<Pizza> pizzas) {
+    public void setPizzas(List<Pizza> pizzas) {
         this.pizzas = pizzas;
     }
 }

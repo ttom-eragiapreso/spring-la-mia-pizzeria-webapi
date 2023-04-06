@@ -23,17 +23,15 @@ public class Pizza {
     private List<SpecialOffer> specialOffers;
     @ManyToMany
     @JoinTable(
-            name = "ingredient_pizza",
-            joinColumns = @JoinColumn(name = "pizza_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+            name = "ingredient_pizza"
     )
-    private Set<Ingredient> ingredients;
+    private List<Ingredient> ingredients;
 
-    public Set<Ingredient> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Set<Ingredient> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 

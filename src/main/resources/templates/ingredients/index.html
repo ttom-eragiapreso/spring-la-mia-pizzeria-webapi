@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/fragments :: head}"></th:block>
+    <title>I nostri ingredienti</title>
+</head>
+<body>
+<th:block th:replace="~{fragments/fragments :: navbar('', false)}"></th:block>
+
+<ul>
+    <li th:each="ingredient : ${ingredients}" th:text="${ingredient.name}"></li>
+</ul>
+</body>
+</html>
