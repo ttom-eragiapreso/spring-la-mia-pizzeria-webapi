@@ -7,6 +7,8 @@ import org.learning.lamiapizzeria.model.SpecialOffer;
 import org.learning.lamiapizzeria.service.PizzaService;
 import org.learning.lamiapizzeria.service.SpecialOfferService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,7 +45,6 @@ public class SpecialOfferController {
 
     @PostMapping("/create")
     public String store(@Valid @ModelAttribute SpecialOffer formSpecialOffer, BindingResult bindingResult) {
-
         if (bindingResult.hasErrors()) return "SpecialOffer/create";
         SpecialOffer specialOfferNuova = specialOfferService.store(formSpecialOffer);
         return "redirect:/pizza/" + specialOfferNuova.getPizza().getId();

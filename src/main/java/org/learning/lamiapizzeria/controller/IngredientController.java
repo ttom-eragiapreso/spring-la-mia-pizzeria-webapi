@@ -2,8 +2,10 @@ package org.learning.lamiapizzeria.controller;
 
 import jakarta.validation.Valid;
 import org.learning.lamiapizzeria.model.Ingredient;
+import org.learning.lamiapizzeria.security.DatabaseUserDetailsService;
 import org.learning.lamiapizzeria.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,10 +17,14 @@ public class IngredientController {
     @Autowired
     private IngredientService ingredientService;
 
+    @Autowired
+    private DatabaseUserDetailsService databaseUserDetailsService;
+
     @GetMapping
-    public String index(Model model) {
+    public String index(Model model, Authentication authentication) {
         model.addAttribute("ingredients", ingredientService.getAll());
         model.addAttribute("ingredient", new Ingredient());
+        System.out.println(databaseUserDetailsService.loadUserByUsername(authentication.getName()).getAuthorities());
         return "ingredients/index";
     }
 
