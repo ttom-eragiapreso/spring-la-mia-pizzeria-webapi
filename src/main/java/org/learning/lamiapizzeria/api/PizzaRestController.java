@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/pizza")
@@ -19,7 +20,8 @@ public class PizzaRestController {
     private PizzaService pizzaService;
 
     @GetMapping
-    public List<Pizza> getAllPizzas() {
+    public List<Pizza> getAllPizzas(@RequestParam(name = "q") Optional<String> search) {
+        if (search.isPresent()) return pizzaService.getFilteredPizzas(search.get());
         return pizzaService.getAllPizzas();
     }
 
