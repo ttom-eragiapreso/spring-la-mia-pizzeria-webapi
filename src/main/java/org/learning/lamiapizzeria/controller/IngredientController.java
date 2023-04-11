@@ -24,7 +24,7 @@ public class IngredientController {
     public String index(Model model, Authentication authentication) {
         model.addAttribute("ingredients", ingredientService.getAll());
         model.addAttribute("ingredient", new Ingredient());
-        System.out.println(databaseUserDetailsService.loadUserByUsername(authentication.getName()).getAuthorities());
+        //System.out.println(databaseUserDetailsService.loadUserByUsername(authentication.getName()).getAuthorities());
         return "ingredients/index";
     }
 
