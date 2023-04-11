@@ -1,5 +1,6 @@
 package org.learning.lamiapizzeria.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -18,6 +19,7 @@ public class SpecialOffer {
     private LocalDate startDate;
     private LocalDate endDate;
     @ManyToOne
+    @JsonIgnore
     private Pizza pizza;
 
     public Integer getId() {

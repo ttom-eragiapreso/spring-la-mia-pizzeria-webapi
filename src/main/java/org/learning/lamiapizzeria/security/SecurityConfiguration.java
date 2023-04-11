@@ -36,11 +36,13 @@ public class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         //System.out.println(passwordEncoder().encode("ciccio"));
         http.authorizeHttpRequests()
+                .requestMatchers("/api/**").permitAll()
                 .requestMatchers("/pizza", "/pizza/*", "/", "/webjars/**").hasAnyAuthority("ADMIN", "USER")
                 .requestMatchers("/**").hasAuthority("ADMIN")
                 .and().formLogin()
                 .and().logout()
                 .and().exceptionHandling();
+        http.csrf().disable();
         return http.build();
     }
 }
