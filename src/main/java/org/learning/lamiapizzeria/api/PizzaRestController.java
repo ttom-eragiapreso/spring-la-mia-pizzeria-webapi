@@ -45,4 +45,14 @@ public class PizzaRestController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PutMapping("/{id}")
+    public Pizza update(@Valid @RequestBody Pizza bodyPizza, @PathVariable Integer id) {
+
+        try {
+            return pizzaService.updatePizza(bodyPizza, id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 }
