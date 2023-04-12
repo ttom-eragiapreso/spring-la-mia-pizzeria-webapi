@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta
+            http-equiv="X-UA-Compatible"
+            content="IE=edge"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"/>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.css"
+            integrity="sha512-bR79Bg78Wmn33N5nvkEyg66hNg+xF/Q8NA8YABbj+4sBngYhv9P8eum19hdjYcY7vXk/vRkhM3v/ZndtgEXRWw=="
+            crossorigin="anonymous"/>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.47/vue.global.js"
+            integrity="sha512-2zwx0mkoR2cxZY0humPK79YhJYgoX5lT+WNqkgTcV7qhVm3+msjlmOgoXnN1cW2r9qqbZez3XhnLZsyW3k8Wtg=="
+            crossorigin="anonymous"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.js"
+            integrity="sha512-UOPGGJGJDgYLHr0jkg4Ie9q0+ote8ofDM+vNdxw8sjPWV2/BnY6nY3zKy9N02HQX5QFk+QcHC1jcoDoSH2PgFw=="
+            crossorigin="anonymous"></script>
+    <script
+            src="app.js"
+            defer></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+                    class="collapse navbar-collapse"
+                    id="navbarSupportedContent">
+                <form
+                        class="d-flex"
+                        role="search">
+                    <input
+                            class="form-control me-2"
+                            type="search"
+                            placeholder="Search"
+                            v-model="keyword"
+                            aria-label="Search"/>
+                    <button
+                            class="btn btn-outline-success"
+                            @click.prevent="loadData()"
+                            type="submit">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div
+                class="col"
+                v-for="pizza in response.data"
+                :key="pizza.id">
+            <div
+                    class="card"
+                    style="width: 18rem">
+                <div class="card-body">
+                    <h5 class="card-title">{{pizza.description}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{pizza.price}} €</h6>
+                    <button
+                            class="btn btn-danger"
+                            @click="deletePizza(pizza.id)">
+                        Cancella pizza
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form>
+        <div class="mb-3">
+            <label
+                    for="description"
+                    class="form-label"
+            >Pizza Name</label
+            >
+            <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    v-model="newPizzaDescription"
+                    name="description"/>
+        </div>
+        <div class="mb-3">
+            <label
+                    for="price"
+                    class="form-label"
+            >Pizza price</label
+            >
+            <input
+                    type="number"
+                    class="form-control"
+                    name="price"
+                    v-model="newPizzaPrice"
+                    id="price"/>
+        </div>
+        <div class="mb-3 form-check">
+            <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="exampleCheck1"/>
+            <label
+                    class="form-check-label"
+                    for="exampleCheck1"
+            >Check me out</label
+            >
+        </div>
+        <button
+                type="submit"
+                class="btn btn-primary"
+                @click.prevent="savePizza()">
+            Submit
+        </button>
+    </form>
+</div>
+</body>
+</html>
